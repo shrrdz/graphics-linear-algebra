@@ -2,7 +2,9 @@
 
 #define GLA
 
+#include <cmath>
 #include <cstdint>
+#include <iostream>
 
 #include "forward.h"
 
