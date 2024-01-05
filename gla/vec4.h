@@ -15,6 +15,65 @@ namespace gla
 
 		vec(T x, T y, T z, T w) : x(x), y(y), z(z), w(w) { }
 
+		// ┌----------------------------------------------------┐
+		// │    binary operators                                |
+		// └----------------------------------------------------┘
+
+		vec operator + (const vec &v) const { return vec(x + v.x, y + v.y, z + v.z, w + v.w); }
+		vec operator - (const vec &v) const { return vec(x - v.x, y - v.y, z - v.z, w - v.w); }
+		vec operator * (const vec &v) const { return vec(x * v.x, y * v.y, z * v.z, w * v.w); }
+		vec operator / (const vec &v) const { return vec(x / v.x, y / v.y, z / v.z, w / v.w); }
+
+		vec operator * (T scalar) const { return vec(x * scalar, y * scalar, z * scalar, w * scalar); }
+		vec operator / (T scalar) const { return vec(x / scalar, y / scalar, z / scalar, w / scalar); }
+
+		friend vec operator * (T scalar, const vec &v) { return vec(v.x * scalar, v.y * scalar, v.z * scalar, v.w * scalar); }
+
+		// ┌----------------------------------------------------┐
+		// │    compound assignment operators                   |
+		// └----------------------------------------------------┘
+		
+		vec & operator += (const vec &v) { x += v.x; y += v.y; z += v.z; w += v.w; return *this; }
+		vec & operator -= (const vec &v) { x -= v.x; y -= v.y; z -= v.z; w -= v.w; return *this; }
+		vec & operator *= (const vec &v) { x *= v.x; y *= v.y; z *= v.z; w *= v.w; return *this; }
+		vec & operator /= (const vec &v) { x /= v.x; y /= v.y; z /= v.z; w /= v.w; return *this; }
+
+		vec & operator *= (T scalar) { x *= scalar; y *= scalar; z *= scalar; w *= scalar; return *this; }
+		vec & operator /= (T scalar) { x /= scalar; y /= scalar; z /= scalar; w /= scalar; return *this; }
+
+		// ┌----------------------------------------------------┐
+		// │    comparison operators                            |
+		// └----------------------------------------------------┘
+
+		bool operator == (const vec &v) const { return x == v.x && y == v.y && z == v.z && w == v.w; }
+		bool operator != (const vec &v) const { return !(*this == v); }
+
+		// ┌----------------------------------------------------┐
+		// │    access operators                                |
+		// └----------------------------------------------------┘
+
+        T & operator [] (std::size_t index)
+        {            
+			switch (index)
+			{
+				case 0: return x;
+				case 1: return y;
+				case 2: return z;
+				case 3: return w;
+			}
+        }
+
+        const T & operator [] (std::size_t index) const
+        {
+			switch (index)
+			{
+				case 0: return x;
+				case 1: return y;
+				case 2: return z;
+				case 3: return w;
+			}
+        }
+
 		T length()
 		{
 			return std::sqrt(x * x + y * y + z * z + w * w);
