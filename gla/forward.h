@@ -31,4 +31,12 @@ namespace gla
     typedef vec<2, long>            lvec2;
     typedef vec<3, long>            lvec3;
     typedef vec<4, long>            lvec4;
+    
+    // ┌----------------------------------------------------┐
+    // |    type aliases                                    |
+    // └----------------------------------------------------┘
+
+    template <typename T> using tvec2 = vec<2, T>;
+    template <typename T> using tvec3 = vec<3, T>;
+    template <typename T> using tvec4 = vec<4, T>;
 }
