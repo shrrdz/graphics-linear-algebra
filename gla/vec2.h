@@ -58,6 +58,8 @@ namespace gla
 			{
 				case 0: return x;
 				case 1: return y;
+
+				default: GLA_ASSERT(false, "trying to access or write to a non-existent vec2 index!");
 			}
         }
 
@@ -67,11 +69,15 @@ namespace gla
 			{
 				case 0: return x;
 				case 1: return y;
+
+				default: GLA_ASSERT(false, "trying to access or write to a non-existent vec2 index!");
 			}
         }
 
 		T length()
 		{
+			GLA_STATIC_ASSERT(std::is_floating_point<T>::value, "function 'length()' only accepts floating-point value inputs!");
+
 			return std::sqrt(x * x + y * y);
 		}
 
@@ -82,6 +88,8 @@ namespace gla
 
 		vec normalized()
 		{
+			GLA_STATIC_ASSERT(std::is_floating_point<T>::value, "function 'normalized()' only accepts floating-point value inputs!");
+
 			return (*this != zero()) ? (*this /= length()) : zero();
 		}
 
