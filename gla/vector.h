@@ -6,11 +6,14 @@
     ┌----------------------------------------┐
     | available properties:                  |
     |                                        |
+    | [x] size                               |
     | [x] length                             |
+    | [x] squared length                     |
     | [x] opposite                           |
     | [x] normalized                         |
     | [x] dot product                        |
     | [x] cross product                      |
+    | [x] distance                           | 
     └----------------------------------------┘
 */
 

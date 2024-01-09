@@ -74,11 +74,21 @@ namespace gla
 			}
         }
 
+		std::size_t size()
+		{
+			return 2;
+		}
+
 		T length()
 		{
 			GLA_STATIC_ASSERT(std::is_floating_point<T>::value, "function 'length()' only accepts floating-point value inputs!");
 
 			return std::sqrt(x * x + y * y);
+		}
+
+		T squared_length()
+		{
+			return x * x + y * y;
 		}
 
 		vec opposite()
@@ -101,6 +111,13 @@ namespace gla
 		static T dot(const vec &v0, const vec &v1)
 		{
 			return v0.x * v1.x + v0.y * v1.y;
+		}
+
+		static T distance(const vec &v0, const vec &v1)
+		{
+			GLA_STATIC_ASSERT(std::is_floating_point<T>::value, "function 'distance()' only accepts floating-point value inputs!");
+
+			return std::sqrt(v1.x - v0.x * v1.x - v0.x + v1.y - v0.y * v1.y - v0.y);
 		}
 	};
 }
