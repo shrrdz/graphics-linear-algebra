@@ -15,6 +15,8 @@ namespace gla
 
 		vec(T x, T y, T z) : x(x), y(y), z(z) { }
 
+		static const std::size_t size() { return 3; }
+
 		// ┌----------------------------------------------------┐
 		// │    binary operators                                |
 		// └----------------------------------------------------┘
@@ -76,10 +78,9 @@ namespace gla
 			}
         }
 
-		std::size_t size()
-		{
-			return 3;
-		}
+		// ┌----------------------------------------------------┐
+		// │    properties                                      |
+		// └----------------------------------------------------┘
 
 		T length()
 		{
@@ -118,6 +119,11 @@ namespace gla
 		static vec cross(const vec &v0, const vec &v1)
 		{
 			return vec(v0.y * v1.z - v0.z * v1.y, v0.z * v1.x - v0.x * v1.z, v0.x * v1.y - v0.y * v1.x);
+		}
+
+		static vec reflection(const vec &incident, const vec &normal)
+		{
+			return incident - 2 * dot(normal, incident) * normal;
 		}
 
 		static T distance(const vec &v0, const vec &v1)

@@ -13,7 +13,8 @@
     | [x] normalized                         |
     | [x] dot product                        |
     | [x] cross product                      |
-    | [x] distance                           | 
+    | [x] reflection                         |
+    | [x] distance                           |
     └----------------------------------------┘
 */
 

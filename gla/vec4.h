@@ -15,6 +15,8 @@ namespace gla
 
 		vec(T x, T y, T z, T w) : x(x), y(y), z(z), w(w) { }
 
+		static const std::size_t size() { return 4; }
+
 		// ┌----------------------------------------------------┐
 		// │    binary operators                                |
 		// └----------------------------------------------------┘
@@ -78,11 +80,6 @@ namespace gla
 			}
         }
 
-		std::size_t size()
-		{
-			return 4;
-		}
-
 		T length()
 		{
 			GLA_STATIC_ASSERT(std::is_floating_point<T>::value, "function 'length()' only accepts floating-point value inputs!");
@@ -107,6 +104,10 @@ namespace gla
 			return (*this != zero()) ? (*this /= length()) : zero();
 		}
 
+		// ┌----------------------------------------------------┐
+		// │    properties                                      |
+		// └----------------------------------------------------┘
+
 		static vec zero()
 		{
 			return { 0, 0, 0, 0 };
@@ -120,6 +121,11 @@ namespace gla
 		static vec cross(const vec &v0, const vec &v1)
 		{
 			return vec(v0.y * v1.z - v0.z * v1.y, v0.z * v1.x - v0.x * v1.z, v0.x * v1.y - v0.y * v1.x, 0);
+		}
+
+		static vec reflection(const vec &incident, const vec &normal)
+		{
+			return incident - 2 * dot(normal, incident) * normal;
 		}
 
 		static T distance(const vec &v0, const vec &v1)

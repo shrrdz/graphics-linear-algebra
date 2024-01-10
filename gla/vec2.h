@@ -15,6 +15,8 @@ namespace gla
 
 		vec(T x, T y) : x(x), y(y) { }
 
+		static const std::size_t size() { return 2; }
+
 		// ┌----------------------------------------------------┐
 		// │    binary operators                                |
 		// └----------------------------------------------------┘
@@ -74,10 +76,9 @@ namespace gla
 			}
         }
 
-		std::size_t size()
-		{
-			return 2;
-		}
+		// ┌----------------------------------------------------┐
+		// │    properties                                      |
+		// └----------------------------------------------------┘
 
 		T length()
 		{
@@ -111,6 +112,11 @@ namespace gla
 		static T dot(const vec &v0, const vec &v1)
 		{
 			return v0.x * v1.x + v0.y * v1.y;
+		}
+
+		static vec reflection(const vec &incident, const vec &normal)
+		{
+			return incident - 2 * dot(normal, incident) * normal;
 		}
 
 		static T distance(const vec &v0, const vec &v1)
