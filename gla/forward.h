@@ -60,4 +60,8 @@ namespace gla
     template <typename T> using tvec2 = vec<2, T>;
     template <typename T> using tvec3 = vec<3, T>;
     template <typename T> using tvec4 = vec<4, T>;
+
+    template <typename T> using tmat2x2 = mat<2, 2, T>;
+    template <typename T> using tmat3x3 = mat<3, 3, T>;
+    template <typename T> using tmat4x4 = mat<4, 4, T>;
 }
