@@ -18,6 +18,126 @@ namespace gla
         static const std::size_t rows()    { return row::size(); };
 
         // ┌----------------------------------------------------┐
+        // │    binary operators                                |
+        // └----------------------------------------------------┘
+
+        mat operator + (const mat &m) const
+        {
+            mat result;
+
+            for (int c = 0; c < columns(); c++)
+            {
+                for (int r = 0; r < rows(); r++)
+                {
+                    result[c][r] = values[c][r] + m[c][r];
+                }
+            }
+
+            return result;
+        }
+
+        mat operator - (const mat &m) const
+        {
+            mat result;
+
+            for (int c = 0; c < columns(); c++)
+            {
+                for (int r = 0; r < rows(); r++)
+                {
+                    result[c][r] = values[c][r] - m[c][r];
+                }
+            }
+
+            return result;
+        }
+
+        mat operator * (const mat &m) const
+        {
+            mat result;
+
+            for (int c = 0; c < columns(); c++)
+            {
+                for (int r = 0; r < rows(); r++)
+                {
+                    result[c][r] = values[c][0] * m[0][r] + values[c][1] * m[1][r];
+                }
+            }
+
+            return result;
+        }
+
+        mat operator * (const T scalar)
+        {
+            for (int c = 0; c < columns(); c++)
+            {
+                for (int r = 0; r < rows(); r++)
+                {
+                    values[c][r] *= scalar;
+                }
+            }
+
+            return *this;
+        }
+
+		friend mat operator * (T scalar, const mat &m)
+        {
+            mat result;
+            
+            for (int c = 0; c < columns(); c++)
+            {
+                for (int r = 0; r < rows(); r++)
+                {
+                    result[c][r] = m[c][r] * scalar;
+                }
+            }
+
+            return result;
+        }
+
+        // ┌----------------------------------------------------┐
+        // │    compound assignment operators                   |
+        // └----------------------------------------------------┘
+
+        mat & operator += (const mat &m)
+        {
+            for (int c = 0; c < columns(); c++)
+            {
+                for (int r = 0; r < rows(); r++)
+                {
+                    values[c][r] += m[c][r];
+                }
+            }
+
+            return *this;
+        }
+
+        mat & operator -= (const mat &m)
+        {
+            for (int c = 0; c < columns(); c++)
+            {
+                for (int r = 0; r < rows(); r++)
+                {
+                    values[c][r] -= m[c][r];
+                }
+            }
+
+            return *this;
+        }
+
+        mat & operator *= (const mat &m)
+        {
+            for (int c = 0; c < columns(); c++)
+            {
+                for (int r = 0; r < rows(); r++)
+                {
+                    values[c][r] = values[c][0] * m[0][r] + values[c][1] * m[1][r];
+                }
+            }
+
+            return *this;
+        }
+
+        // ┌----------------------------------------------------┐
         // │    access operators                                |
         // └----------------------------------------------------┘
 
