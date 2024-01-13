@@ -11,3 +11,4 @@
 #include "forward.h"
 
 #include "vector.h"
+#include "matrix.h"
