@@ -13,6 +13,7 @@
    | available properties:                  |
    |                                        |
    | [x] identity                           |
+   | [x] transpose                          |
    └----------------------------------------┘
 */
 

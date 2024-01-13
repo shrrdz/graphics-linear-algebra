@@ -48,5 +48,20 @@ namespace gla
 
             return identity;
         }
+
+        mat transpose()
+        {
+            mat result;
+
+            for (int c = 0; c < columns(); c++)
+            {
+                for (int r = 0; r < rows(); r++)
+                {
+                    result.values[c][r] = values[r][c];
+                }
+            }
+
+            return result;
+        }
     };
 }
