@@ -184,5 +184,36 @@ namespace gla
 
             return result;
         }
+
+        mat<2, 2, T> submatrix(std::size_t remove_column, std::size_t remove_row)
+        {
+            GLA_ASSERT(remove_column < columns() && remove_row < rows(), "trying to remove a non-existant mat3x3 index!");
+
+            mat<2, 2, T> result;
+
+            int result_column = 0;
+            
+            for (int c = 0; c < columns(); c++)
+            {
+                // remove the column
+                if (c == remove_column) continue;
+
+                int result_row = 0;
+                
+                for (int r = 0; r < rows(); r++)
+                {
+                    // remove the row
+                    if (r == remove_row) continue;
+
+                    result[result_column][result_row] = values[c][r];
+
+                    result_row++;
+                }
+
+                result_column++;
+            }
+
+            return result;
+        }
     };
 }
