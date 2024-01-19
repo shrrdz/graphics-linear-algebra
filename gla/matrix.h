@@ -15,6 +15,8 @@
    | [x] identity                           |
    | [x] transpose                          |
    | [x] submatrix                          |
+   | [x] trace                              |
+   | [x] determinant                        |
    └----------------------------------------┘
 */
 

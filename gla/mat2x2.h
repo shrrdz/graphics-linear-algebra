@@ -183,5 +183,15 @@ namespace gla
 
             return result;
         }
+
+        T trace()
+        {
+            return values[0][0] + values[1][1];
+        }
+
+        T determinant()
+        {
+            return values[0][0] * values[1][1] - values[0][1] * values[1][0];
+        }
     };
 }

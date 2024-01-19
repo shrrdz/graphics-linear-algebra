@@ -186,6 +186,39 @@ namespace gla
             return result;
         }
 
+        T trace()
+        {
+            return values[0][0] + values[1][1] + values[2][2] + values[3][3];
+        }
+
+        T determinant()
+        {
+            return values[0][0] *
+                   (
+                       values[1][1] * (values[2][2] * values[3][3] - values[2][3] * values[3][2]) -
+                       values[2][1] * (values[1][2] * values[3][3] - values[1][3] * values[3][2]) +
+                       values[3][1] * (values[1][2] * values[2][3] - values[1][3] * values[2][2])
+                   ) 
+                   - values[1][0] *
+                   (
+                       values[0][1] * (values[2][2] * values[3][3] - values[2][3] * values[3][2]) -
+                       values[2][1] * (values[0][2] * values[3][3] - values[0][3] * values[3][2]) +
+                       values[3][1] * (values[0][2] * values[2][3] - values[0][3] * values[2][2])
+                   )
+                   + values[2][0] *
+                   (
+                       values[0][1] * (values[1][2] * values[3][3] - values[1][3] * values[3][2]) -
+                       values[1][1] * (values[0][2] * values[3][3] - values[0][3] * values[3][2]) +
+                       values[3][1] * (values[0][2] * values[1][3] - values[0][3] * values[1][2])
+                   )
+                   - values[3][0] *
+                   (
+                       values[0][1] * (values[1][2] * values[2][3] - values[1][3] * values[2][2]) -
+                       values[1][1] * (values[0][2] * values[2][3] - values[0][3] * values[2][2]) +
+                       values[2][1] * (values[0][2] * values[1][3] - values[0][3] * values[1][2])
+                   );
+        }
+
         mat<3, 3, T> submatrix(std::size_t remove_column, std::size_t remove_row)
         {
             GLA_ASSERT(remove_column < columns() && remove_row < rows(), "trying to remove a non-existant mat4x4 index!");
