@@ -6,6 +6,15 @@
 /*
    ┌--------------------------------------------------------------------------┐
    |                                                                          |
+   | all matrices are in right-handed coordinate system by default:           |
+   |                                                                          |
+   |                 +y                                                       |
+   |                   |                                                      |
+   |                   |                                                      |
+   |                   |________                                              |
+   |                  /        +x                                             |
+   |              +z /                                                        |
+   |                                                                          |
    | order of application:                                                    |
    |                                                                          |
    |        scale * z-rotation * y-rotation * x-rotation * translation        |
@@ -105,5 +114,22 @@ namespace gla
         view[3][2] =   vec<3, T>::dot(front, eye);
 
         return view;
+    }
+
+    // projection matrix - perspective
+    template<typename T>
+    static mat<4, 4, T> perspective(const T fov_degrees, const T aspect_ratio, const T near, const T far)
+    {        
+        mat<4, 4, T> projection;
+
+        const T tan_half_fov = std::tan(radians(fov_degrees) / 2);
+
+        projection[0][0] =   1 / (aspect_ratio * tan_half_fov);
+        projection[1][1] =   1 / tan_half_fov;
+        projection[2][2] = - (far + near) / (far - near);
+        projection[2][3] =   1;
+        projection[3][2] = - (2 * far * near) / (far - near);
+
+        return projection;
     }
 }
