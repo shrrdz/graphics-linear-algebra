@@ -127,7 +127,7 @@ namespace gla
         projection[0][0] =   1 / (aspect_ratio * tan_half_fov);
         projection[1][1] =   1 / tan_half_fov;
         projection[2][2] = - (far + near) / (far - near);
-        projection[2][3] =   1;
+        projection[2][3] = - 1;
         projection[3][2] = - (2 * far * near) / (far - near);
 
         return projection;
