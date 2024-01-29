@@ -77,4 +77,33 @@ namespace gla
 
         return result;
     }
+
+    // view matrix
+    template<typename T>
+    static mat<4, 4, T> view(const vec<3, T> &eye, const vec<3, T> &at, const vec<3, T> &up)
+    {
+        mat<4, 4, T> view = gla::mat4x4::identity();
+
+        const vec<3, T> front = (at - eye).normalized();
+        const vec<3, T> side  = vec<3, T>::cross(front, up).normalized();
+        const vec<3, T> above = vec<3, T>::cross(side, front);
+
+        view[0][0] =   side.x;
+        view[0][1] =   above.x;
+        view[0][2] = - front.x;
+
+        view[1][0] =   side.y;
+        view[1][1] =   above.y;
+        view[1][2] = - front.y;
+
+        view[2][0] =   side.z;
+        view[2][1] =   above.z;
+        view[2][2] = - front.z;
+
+        view[3][0] = - vec<3, T>::dot(side, eye);
+        view[3][1] = - vec<3, T>::dot(above, eye);
+        view[3][2] =   vec<3, T>::dot(front, eye);
+
+        return view;
+    }
 }
