@@ -5,6 +5,9 @@
 namespace gla
 {
     static const float PI = 3.1415927F;
+    static const float PHI = 1.6180399F;
+    static const float TAU = 2 * PI;
+    static const float EPSILON = 1e-5F;
 
     static float radians(const float degrees)
     {
