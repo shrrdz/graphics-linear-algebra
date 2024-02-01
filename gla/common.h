@@ -4,9 +4,10 @@
 
 namespace gla
 {
-    static const float PI = 3.1415927F;
-    static const float PHI = 1.6180339F;
-    static const float TAU = 2 * PI;
+    static const float PI = 3.1415927F;     // ratio of a circle's circumference to its diameter
+    static const float PHI = 1.6180339F;    // golden ratio
+    static const float TAU = 2 * PI;        // ratio of the circumference to the radius of a circle
+    static const float E = 2.7182818F;      // Euler's number
     static const float EPSILON = 1e-5F;
 
     static float radians(const float degrees)
