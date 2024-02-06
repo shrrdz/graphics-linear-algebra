@@ -184,6 +184,30 @@ namespace gla
             return result;
         }
 
+        mat cofactor()
+        {
+            mat result;
+
+            result[0][0] =   values[1][1];
+            result[0][1] = - values[1][0];
+            result[1][0] = - values[0][1];
+            result[1][1] =   values[0][0];
+
+            return result;
+        }
+
+        mat adjugate()
+        {
+            return cofactor().transpose();
+        }
+
+        mat inverse()
+        {
+            GLA_ASSERT(determinant != 0, "the given mat2x2 is singular, therefore it does not have an inverse!")
+
+            return adjugate() * (1 / determinant());
+        }
+
         T trace()
         {
             return values[0][0] + values[1][1];

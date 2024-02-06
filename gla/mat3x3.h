@@ -185,6 +185,37 @@ namespace gla
             return result;
         }
 
+        mat cofactor()
+        {
+            mat result;
+
+            result[0][0] =    values[1][1] * values[2][2] - values[1][2] * values[2][1];
+            result[0][1] = - (values[1][0] * values[2][2] - values[1][2] * values[2][0]);
+            result[0][2] =    values[1][0] * values[2][1] - values[1][1] * values[2][0];
+
+            result[1][0] = - (values[0][1] * values[2][2] - values[0][2] * values[2][1]);
+            result[1][1] =    values[0][0] * values[2][2] - values[0][2] * values[2][0];
+            result[1][2] = - (values[0][0] * values[2][1] - values[0][1] * values[2][0]);
+
+            result[2][0] =    values[0][1] * values[1][2] - values[0][2] * values[1][1];
+            result[2][1] = - (values[0][0] * values[1][2] - values[0][2] * values[1][0]);
+            result[2][2] =    values[0][0] * values[1][1] - values[0][1] * values[1][0];
+
+            return result;
+        }
+
+        mat adjugate()
+        {
+            return cofactor().transpose();
+        }
+
+        mat inverse()
+        {
+            GLA_ASSERT(determinant != 0, "the given mat3x3 is singular, therefore it does not have an inverse!")
+
+            return adjugate() * (1 / determinant());
+        }
+
         T trace()
         {
             return values[0][0] + values[1][1] + values[2][2];

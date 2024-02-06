@@ -186,6 +186,37 @@ namespace gla
             return result;
         }
 
+        mat cofactor()
+        {
+            mat result;
+
+            for (int c = 0; c < columns(); c++)
+            {
+                for (int r = 0; r < rows(); r++)
+                {
+                    mat<3, 3, T> minor_matrix = submatrix(c, r);
+
+                    T determinant = minor_matrix.determinant();
+
+                    result[c][r] = (((c + r) % 2 == 0) || determinant == 0) ? determinant : -determinant;
+                }
+            }
+
+            return result;
+        }
+
+        mat adjugate()
+        {
+            return cofactor().transpose();
+        }
+
+        mat inverse()
+        {
+            GLA_ASSERT(determinant != 0, "the given mat4x4 is singular, therefore it does not have an inverse!")
+
+            return adjugate() * (1 / determinant());
+        }
+
         T trace()
         {
             return values[0][0] + values[1][1] + values[2][2] + values[3][3];

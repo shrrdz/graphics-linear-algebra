@@ -14,9 +14,12 @@
    |                                        |
    | [x] identity                           |
    | [x] transpose                          |
-   | [x] submatrix                          |
+   | [x] cofactor                           |
+   | [x] adjugate                           |
+   | [x] inverse                            |
    | [x] trace                              |
    | [x] determinant                        |
+   | [x] submatrix                          |
    └----------------------------------------┘
 */
 
