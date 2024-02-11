@@ -59,7 +59,7 @@ namespace gla
             {
                 for (int r = 0; r < rows(); r++)
                 {
-                    result[c][r] = values[c][0] * m[0][r] + values[c][1] * m[1][r];
+                    result[c][r] = values[c][0] * m[0][r] + values[c][1] * m[1][r] + values[c][2] * m[2][r] + values[c][3] * m[3][r];
                 }
             }
 
@@ -130,7 +130,7 @@ namespace gla
             {
                 for (int r = 0; r < rows(); r++)
                 {
-                    values[c][r] = values[c][0] * m[0][r] + values[c][1] * m[1][r];
+                    values[c][r] = values[c][0] * m[0][r] + values[c][1] * m[1][r] + values[c][2] * m[2][r] + values[c][3] * m[3][r];
                 }
             }
 
