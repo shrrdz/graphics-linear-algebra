@@ -132,7 +132,7 @@ namespace gla
 		{
 			GLA_STATIC_ASSERT(std::is_floating_point<T>::value, "function 'distance()' only accepts floating-point value inputs!");
 
-			return std::sqrt(v1.x - v0.x * v1.x - v0.x + v1.y - v0.y * v1.y - v0.y + v1.z - v0.z * v1.z - v0.z);
+			return std::sqrt((v1.x - v0.x) * (v1.x - v0.x) + (v1.y - v0.y) * (v1.y - v0.y) + (v1.z - v0.z) * (v1.z - v0.z));
 		}
 	};
 }
