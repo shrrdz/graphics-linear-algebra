@@ -66,7 +66,7 @@ namespace gla
             return result;
         }
 
-        mat operator * (const T scalar)
+        mat operator * (T scalar)
         {
             for (int c = 0; c < columns(); c++)
             {

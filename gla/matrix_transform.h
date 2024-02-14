@@ -37,7 +37,7 @@ namespace gla
     }
 
     template<typename T>
-    mat<4, 4, T> rotate_x(const mat<4, 4, T> &input, const T angle)
+    mat<4, 4, T> rotate_x(const mat<4, 4, T> &input, T angle)
     {
         mat<4, 4, T> result = mat4x4::identity();
 
@@ -50,7 +50,7 @@ namespace gla
     }
 
     template<typename T>
-    mat<4, 4, T> rotate_y(const mat<4, 4, T> &input, const T angle)
+    mat<4, 4, T> rotate_y(const mat<4, 4, T> &input, T angle)
     {
         mat<4, 4, T> result = mat4x4::identity();
 
@@ -63,7 +63,7 @@ namespace gla
     }
     
     template<typename T>
-    mat<4, 4, T> rotate_z(const mat<4, 4, T> &input, const T angle)
+    mat<4, 4, T> rotate_z(const mat<4, 4, T> &input, T angle)
     {
         mat<4, 4, T> result = mat4x4::identity();
 
@@ -118,7 +118,7 @@ namespace gla
 
     // projection matrix - perspective
     template<typename T>
-    static mat<4, 4, T> perspective(const T fov_degrees, const T aspect_ratio, const T near, const T far)
+    static mat<4, 4, T> perspective(T fov_degrees, T aspect_ratio, T near, T far)
     {        
         mat<4, 4, T> projection;
 
@@ -135,7 +135,7 @@ namespace gla
 
     // projection matrix - orthographic
     template<typename T>
-    static mat<4, 4, T> orthographic(const T left, const T right, const T bottom, const T top)
+    static mat<4, 4, T> orthographic(T left, T right, T bottom, T top)
     {
         mat<4, 4, T> projection = gla::mat4x4::identity();
 
