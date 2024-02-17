@@ -21,6 +21,18 @@ namespace gla
     }
 
     template<typename T>
+    static T cotan(T x)
+    {
+        return 1 / std::tan(x);
+    }
+
+    template<typename T>
+    static int sign(T value)
+    {
+        return (0 < value) - (value < 0);
+    }
+
+    template<typename T>
     static T clamp(T value, T min, T max)
     {
         value = (value < min) ? min : (value > max) ? max : value;
