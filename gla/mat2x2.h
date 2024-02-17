@@ -217,5 +217,16 @@ namespace gla
         {
             return values[0][0] * values[1][1] - values[0][1] * values[1][0];
         }
+
+        void insert(const float (&values)[2][2])
+        {
+            for (int c = 0; c < columns(); c++)
+            {
+                for (int r = 0; r < rows(); r++)
+                {
+                    this->values[c][r] = values[c][r];
+                }
+            }
+        }
     };
 }

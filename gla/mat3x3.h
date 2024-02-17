@@ -262,5 +262,16 @@ namespace gla
 
             return result;
         }
+
+        void insert(const float (&values)[3][3])
+        {
+            for (int c = 0; c < columns(); c++)
+            {
+                for (int r = 0; r < rows(); r++)
+                {
+                    this->values[c][r] = values[c][r];
+                }
+            }
+        }
     };
 }
