@@ -66,7 +66,7 @@ namespace gla
             return result;
         }
 
-        mat operator * (T scalar)
+        mat operator * (T scalar) const
         {
             for (int c = 0; c < columns(); c++)
             {
@@ -135,6 +135,31 @@ namespace gla
             }
 
             return *this;
+        }
+
+		// ┌----------------------------------------------------┐
+		// │    comparison operators                            |
+		// └----------------------------------------------------┘
+
+        bool operator == (const mat &m) const
+        {
+            for (int c = 0; c < columns(); c++)
+            {
+                for (int r = 0; r < rows(); r++)
+                {
+                    if (values[c][r] != m[c][r])
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        bool operator != (const mat &m) const
+        {
+            return !(*this == m);
         }
 
         // ┌----------------------------------------------------┐
