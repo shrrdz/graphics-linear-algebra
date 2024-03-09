@@ -59,7 +59,12 @@ namespace gla
             {
                 for (int r = 0; r < rows(); r++)
                 {
-                    result[c][r] = values[c][0] * m[0][r] + values[c][1] * m[1][r] + values[c][2] * m[2][r] + values[c][3] * m[3][r];
+                    result[c][r] = 0;
+
+                    for (int v = 0; v < rows(); v++)
+                    {
+                        result[c][r] += values[v][r] * m[c][v];
+                    }
                 }
             }
 
@@ -126,13 +131,22 @@ namespace gla
 
         mat & operator *= (const mat &m)
         {
+            mat result;
+
             for (int c = 0; c < columns(); c++)
             {
                 for (int r = 0; r < rows(); r++)
                 {
-                    values[c][r] = values[c][0] * m[0][r] + values[c][1] * m[1][r] + values[c][2] * m[2][r] + values[c][3] * m[3][r];
+                    result[c][r] = 0;
+
+                    for (int v = 0; v < rows(); v++)
+                    {
+                        result[c][r] += values[v][r] * m[c][v];
+                    }
                 }
             }
+
+            *this = result;
 
             return *this;
         }
