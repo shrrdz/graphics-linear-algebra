@@ -46,7 +46,7 @@ namespace gla
         result[2][1] = - std::sin(angle);
         result[2][2] =   std::cos(angle);
 
-        return result * input;
+        return input * result;
     }
 
     template<typename T>
@@ -59,7 +59,7 @@ namespace gla
         result[2][0] =   std::sin(angle);
         result[2][2] =   std::cos(angle);
 
-        return result * input;
+        return input * result;
     }
     
     template<typename T>
@@ -72,7 +72,7 @@ namespace gla
         result[1][0] = - std::sin(angle);
         result[1][1] =   std::cos(angle);
 
-        return result * input;
+        return input * result;
     }
 
     template<typename T>
