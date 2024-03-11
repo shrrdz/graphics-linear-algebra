@@ -135,15 +135,16 @@ namespace gla
 
     // projection matrix - orthographic
     template<typename T>
-    static mat<4, 4, T> orthographic(T left, T right, T bottom, T top)
+    static mat<4, 4, T> orthographic(T left, T right, T bottom, T top, T near, T far)
     {
         mat<4, 4, T> projection = gla::mat4x4::identity();
 
         projection[0][0] =   2 / (right - left);
         projection[1][1] =   2 / (top - bottom);
-        projection[2][2] = - 1;
+        projection[2][2] = - 2 / (far - near);
         projection[3][0] = - (right + left) / (right - left);
         projection[3][1] = - (top + bottom) / (top - bottom);
+        projection[3][2] = - (far + near) / (far - near);
 
         return projection;
     }
