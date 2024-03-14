@@ -54,8 +54,8 @@ namespace gla
 		// │    access operators                                |
 		// └----------------------------------------------------┘
 
-        T & operator [] (std::size_t index)
-        {            
+		T & operator [] (std::size_t index)
+		{            
 			switch (index)
 			{
 				case 0: return x;
@@ -64,7 +64,7 @@ namespace gla
 
 				default: GLA_ASSERT(false, "trying to access or write to a non-existent vec3 index!");
 			}
-        }
+		}
 
         const T & operator [] (std::size_t index) const
         {
