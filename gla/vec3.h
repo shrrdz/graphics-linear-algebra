@@ -82,28 +82,28 @@ namespace gla
 		// │    properties                                      |
 		// └----------------------------------------------------┘
 
-		T length()
+		T length() const
 		{
 			GLA_STATIC_ASSERT(std::is_floating_point<T>::value, "function 'length()' only accepts floating-point value inputs!");
 
 			return std::sqrt(x * x + y * y + z * z);
 		}
 
-		T squared_length()
+		T squared_length() const
 		{
 			return x * x + y * y + z * z;
 		}
 
-		vec opposite()
+		vec opposite() const
 		{
 			return { -x, -y, -z };
 		}
 
-		vec normalized()
+		vec normalized() const
 		{
 			GLA_STATIC_ASSERT(std::is_floating_point<T>::value, "function 'normalized()' only accepts floating-point value inputs!");
 
-			return (*this != zero()) ? (*this /= length()) : zero();
+			return (*this != zero()) ? (*this / length()) : zero();
 		}
 
 		static vec zero()
