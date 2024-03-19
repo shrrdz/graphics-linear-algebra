@@ -98,7 +98,7 @@ namespace gla
 
 		vec opposite() const
 		{
-			return { -x, y, -z, -w };
+			return { -x, -y, -z, -w };
 		}
 
 		vec normalized() const
