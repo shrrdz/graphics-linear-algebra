@@ -21,15 +21,15 @@ namespace gla
 		// │    binary operators                                |
 		// └----------------------------------------------------┘
 
-		vec operator + (const vec &v) const { return vec(x + v.x, y + v.y, z + v.z); }
-		vec operator - (const vec &v) const { return vec(x - v.x, y - v.y, z - v.z); }
-		vec operator * (const vec &v) const { return vec(x * v.x, y * v.y, z * v.z); }
-		vec operator / (const vec &v) const { return vec(x / v.x, y / v.y, z / v.z); }
+		vec operator + (const vec &v) const { return { x + v.x, y + v.y, z + v.z }; }
+		vec operator - (const vec &v) const { return { x - v.x, y - v.y, z - v.z }; }
+		vec operator * (const vec &v) const { return { x * v.x, y * v.y, z * v.z }; }
+		vec operator / (const vec &v) const { return { x / v.x, y / v.y, z / v.z }; }
 
-		vec operator * (T scalar) const { return vec(x * scalar, y * scalar, z * scalar); }
-		vec operator / (T scalar) const { return vec(x / scalar, y / scalar, z / scalar); }
+		vec operator * (T scalar) const { return { x * scalar, y * scalar, z * scalar }; }
+		vec operator / (T scalar) const { return { x / scalar, y / scalar, z / scalar }; }
 
-		friend vec operator * (T scalar, const vec &v) { return vec(v.x * scalar, v.y * scalar, v.z * scalar); }
+		friend vec operator * (T scalar, const vec &v) { return { v.x * scalar, v.y * scalar, v.z * scalar }; }
 
 		// ┌----------------------------------------------------┐
 		// │    compound assignment operators                   |
@@ -133,7 +133,7 @@ namespace gla
 
 		static vec cross(const vec &v0, const vec &v1)
 		{
-			return vec(v0.y * v1.z - v0.z * v1.y, v0.z * v1.x - v0.x * v1.z, v0.x * v1.y - v0.y * v1.x);
+			return { v0.y * v1.z - v0.z * v1.y, v0.z * v1.x - v0.x * v1.z, v0.x * v1.y - v0.y * v1.x };
 		}
 
 		static vec reflection(const vec &incident, const vec &normal)
