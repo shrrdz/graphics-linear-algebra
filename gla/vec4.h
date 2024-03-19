@@ -80,6 +80,10 @@ namespace gla
 			}
 		}
 
+		// ┌----------------------------------------------------┐
+		// │    properties                                      |
+		// └----------------------------------------------------┘
+
 		T length()
 		{
 			GLA_STATIC_ASSERT(std::is_floating_point<T>::value, "function 'length()' only accepts floating-point value inputs!");
@@ -103,10 +107,6 @@ namespace gla
 
 			return (*this != zero()) ? (*this /= length()) : zero();
 		}
-
-		// ┌----------------------------------------------------┐
-		// │    properties                                      |
-		// └----------------------------------------------------┘
 
 		static vec zero()
 		{
