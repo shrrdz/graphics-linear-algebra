@@ -21,15 +21,15 @@ namespace gla
 		// │    binary operators                                |
 		// └----------------------------------------------------┘
 
-		vec operator + (const vec &v) const { return vec(x + v.x, y + v.y); }
-		vec operator - (const vec &v) const { return vec(x - v.x, y - v.y); }
-		vec operator * (const vec &v) const { return vec(x * v.x, y * v.y); }
-		vec operator / (const vec &v) const { return vec(x / v.x, y / v.y); }
+		vec operator + (const vec &v) const { return { x + v.x, y + v.y }; }
+		vec operator - (const vec &v) const { return { x - v.x, y - v.y }; }
+		vec operator * (const vec &v) const { return { x * v.x, y * v.y }; }
+		vec operator / (const vec &v) const { return { x / v.x, y / v.y }; }
 
-		vec operator * (T scalar) const { return vec(x * scalar, y * scalar); }
-		vec operator / (T scalar) const { return vec(x / scalar, y / scalar); }
+		vec operator * (T scalar) const { return { x * scalar, y * scalar }; }
+		vec operator / (T scalar) const { return { x / scalar, y / scalar }; }
 
-		friend vec operator * (T scalar, const vec &v) { return vec(v.x * scalar, v.y * scalar); }
+		friend vec operator * (T scalar, const vec &v) { return { v.x * scalar, v.y * scalar }; }
 
 		// ┌----------------------------------------------------┐
 		// │    compound assignment operators                   |
