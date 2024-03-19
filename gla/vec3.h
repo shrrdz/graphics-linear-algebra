@@ -126,7 +126,7 @@ namespace gla
 			return { 0, 0, -1 };
 		}
 
-		static float dot(const vec &v0, const vec &v1)
+		static T dot(const vec &v0, const vec &v1)
 		{
 			return v0.x * v1.x + v0.y * v1.y + v0.z * v1.z;
 		}
