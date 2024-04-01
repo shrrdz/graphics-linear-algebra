@@ -14,6 +14,9 @@ namespace gla
         column values[3];
         
     public:
+        mat() : values { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } } { }
+        mat(const row &r0, const row &r1, const row &r2) : values { r0, r1, r2 } { }
+
         static const std::size_t columns() { return column::size(); };
         static const std::size_t rows()    { return row::size(); };
 
