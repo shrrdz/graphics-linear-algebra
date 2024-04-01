@@ -9,10 +9,10 @@ namespace gla
     {
         typedef vec<3, T> column;
         typedef vec<3, T> row;
-        
+
     private:
         column values[3];
-        
+
     public:
         static const std::size_t columns() { return column::size(); };
         static const std::size_t rows()    { return row::size(); };
@@ -87,7 +87,7 @@ namespace gla
 		friend mat operator * (T scalar, const mat &m)
         {
             mat result;
-            
+
             for (int c = 0; c < columns(); c++)
             {
                 for (int r = 0; r < rows(); r++)
@@ -183,14 +183,14 @@ namespace gla
         column & operator [] (std::size_t index)
         {
             GLA_ASSERT(index < 3, "trying to access or write to a non-existant mat3x3 index!")
-            
+
             return values[index];
         }
 
         const column & operator [] (std::size_t index) const
         {
             GLA_ASSERT(index < 3, "trying to access or write to a non-existant mat3x3 index!")
-            
+
             return values[index];
         }
 
@@ -265,7 +265,7 @@ namespace gla
             return values[0][0] * values[1][1] * values[2][2] +
                    values[1][0] * values[2][1] * values[0][2] +
                    values[2][0] * values[0][1] * values[1][2] -
-                
+
                    values[0][2] * values[1][1] * values[2][0] -
                    values[1][2] * values[2][1] * values[0][0] -
                    values[2][2] * values[0][1] * values[1][0];
@@ -278,14 +278,14 @@ namespace gla
             mat<2, 2, T> result;
 
             int result_column = 0;
-            
+
             for (int c = 0; c < columns(); c++)
             {
                 // remove the column
                 if (c == remove_column) continue;
 
                 int result_row = 0;
-                
+
                 for (int r = 0; r < rows(); r++)
                 {
                     // remove the row

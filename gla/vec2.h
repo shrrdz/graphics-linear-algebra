@@ -8,7 +8,7 @@ namespace gla
     struct vec<2, T>
     {
         T x, y;
-        
+
         vec() : x(0), y(0) { }
 
         vec(T scalar) : x(scalar), y(scalar) { }
@@ -55,7 +55,7 @@ namespace gla
         // └----------------------------------------------------┘
 
         T & operator [] (std::size_t index)
-        {            
+        {
             switch (index)
             {
                 case 0: return x;

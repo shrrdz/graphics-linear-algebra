@@ -55,7 +55,7 @@ namespace gla
         // └----------------------------------------------------┘
 
         T & operator [] (std::size_t index)
-        {            
+        {
             switch (index)
             {
                 case 0: return x;

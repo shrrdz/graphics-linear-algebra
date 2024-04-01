@@ -61,7 +61,7 @@ namespace gla
 
         return input * result;
     }
-    
+
     template<typename T>
     mat<4, 4, T> rotate_z(const mat<4, 4, T> &input, T angle)
     {
@@ -119,7 +119,7 @@ namespace gla
     // projection matrix - perspective
     template<typename T>
     static mat<4, 4, T> perspective(T fov_degrees, T aspect_ratio, T near, T far)
-    {        
+    {
         mat<4, 4, T> projection;
 
         const T tan_half_fov = std::tan(radians(fov_degrees) / 2);

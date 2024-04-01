@@ -34,7 +34,7 @@ namespace gla
         // ┌----------------------------------------------------┐
         // │    compound assignment operators                   |
         // └----------------------------------------------------┘
-        
+
         vec & operator += (const vec &v) { x += v.x; y += v.y; z += v.z; w += v.w; return *this; }
         vec & operator -= (const vec &v) { x -= v.x; y -= v.y; z -= v.z; w -= v.w; return *this; }
         vec & operator *= (const vec &v) { x *= v.x; y *= v.y; z *= v.z; w *= v.w; return *this; }
@@ -55,7 +55,7 @@ namespace gla
         // └----------------------------------------------------┘
 
         T & operator [] (std::size_t index)
-        {            
+        {
             switch (index)
             {
                 case 0: return x;
