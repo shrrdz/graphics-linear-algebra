@@ -4,126 +4,126 @@
 
 namespace gla
 {
-	template<typename T>
-	struct vec<2, T>
-	{
-		T x, y;
-		
-		vec() : x(0), y(0) { }
+    template<typename T>
+    struct vec<2, T>
+    {
+        T x, y;
+        
+        vec() : x(0), y(0) { }
 
-		vec(T scalar) : x(scalar), y(scalar) { }
+        vec(T scalar) : x(scalar), y(scalar) { }
 
-		vec(T x, T y) : x(x), y(y) { }
+        vec(T x, T y) : x(x), y(y) { }
 
-		static const std::size_t size() { return 2; }
+        static const std::size_t size() { return 2; }
 
-		// ┌----------------------------------------------------┐
-		// │    binary operators                                |
-		// └----------------------------------------------------┘
+        // ┌----------------------------------------------------┐
+        // │    binary operators                                |
+        // └----------------------------------------------------┘
 
-		vec operator + (const vec &v) const { return { x + v.x, y + v.y }; }
-		vec operator - (const vec &v) const { return { x - v.x, y - v.y }; }
-		vec operator * (const vec &v) const { return { x * v.x, y * v.y }; }
-		vec operator / (const vec &v) const { return { x / v.x, y / v.y }; }
+        vec operator + (const vec &v) const { return { x + v.x, y + v.y }; }
+        vec operator - (const vec &v) const { return { x - v.x, y - v.y }; }
+        vec operator * (const vec &v) const { return { x * v.x, y * v.y }; }
+        vec operator / (const vec &v) const { return { x / v.x, y / v.y }; }
 
-		vec operator * (T scalar) const { return { x * scalar, y * scalar }; }
-		vec operator / (T scalar) const { return { x / scalar, y / scalar }; }
+        vec operator * (T scalar) const { return { x * scalar, y * scalar }; }
+        vec operator / (T scalar) const { return { x / scalar, y / scalar }; }
 
-		friend vec operator * (T scalar, const vec &v) { return { v.x * scalar, v.y * scalar }; }
+        friend vec operator * (T scalar, const vec &v) { return { v.x * scalar, v.y * scalar }; }
 
-		// ┌----------------------------------------------------┐
-		// │    compound assignment operators                   |
-		// └----------------------------------------------------┘
+        // ┌----------------------------------------------------┐
+        // │    compound assignment operators                   |
+        // └----------------------------------------------------┘
 
-		vec & operator += (const vec &v) { x += v.x; y += v.y; return *this; }
-		vec & operator -= (const vec &v) { x -= v.x; y -= v.y; return *this; }
-		vec & operator *= (const vec &v) { x *= v.x; y *= v.y; return *this; }
-		vec & operator /= (const vec &v) { x /= v.x; y /= v.y; return *this; }
+        vec & operator += (const vec &v) { x += v.x; y += v.y; return *this; }
+        vec & operator -= (const vec &v) { x -= v.x; y -= v.y; return *this; }
+        vec & operator *= (const vec &v) { x *= v.x; y *= v.y; return *this; }
+        vec & operator /= (const vec &v) { x /= v.x; y /= v.y; return *this; }
 
-		vec & operator *= (T scalar) { x *= scalar; y *= scalar; return *this; }
-		vec & operator /= (T scalar) { x /= scalar; y /= scalar; return *this; }
+        vec & operator *= (T scalar) { x *= scalar; y *= scalar; return *this; }
+        vec & operator /= (T scalar) { x /= scalar; y /= scalar; return *this; }
 
-		// ┌----------------------------------------------------┐
-		// │    comparison operators                            |
-		// └----------------------------------------------------┘
+        // ┌----------------------------------------------------┐
+        // │    comparison operators                            |
+        // └----------------------------------------------------┘
 
-		bool operator == (const vec &v) const { return x == v.x && y == v.y; }
-		bool operator != (const vec &v) const { return !(*this == v); }
+        bool operator == (const vec &v) const { return x == v.x && y == v.y; }
+        bool operator != (const vec &v) const { return !(*this == v); }
 
-		// ┌----------------------------------------------------┐
-		// │    access operators                                |
-		// └----------------------------------------------------┘
+        // ┌----------------------------------------------------┐
+        // │    access operators                                |
+        // └----------------------------------------------------┘
 
-		T & operator [] (std::size_t index)
-		{            
-			switch (index)
-			{
-				case 0: return x;
-				case 1: return y;
+        T & operator [] (std::size_t index)
+        {            
+            switch (index)
+            {
+                case 0: return x;
+                case 1: return y;
 
-				default: GLA_ASSERT(false, "trying to access or write to a non-existent vec2 index!");
-			}
-		}
+                default: GLA_ASSERT(false, "trying to access or write to a non-existent vec2 index!");
+            }
+        }
 
-		const T & operator [] (std::size_t index) const
-		{
-			switch (index)
-			{
-				case 0: return x;
-				case 1: return y;
+        const T & operator [] (std::size_t index) const
+        {
+            switch (index)
+            {
+                case 0: return x;
+                case 1: return y;
 
-				default: GLA_ASSERT(false, "trying to access or write to a non-existent vec2 index!");
-			}
-		}
+                default: GLA_ASSERT(false, "trying to access or write to a non-existent vec2 index!");
+            }
+        }
 
-		// ┌----------------------------------------------------┐
-		// │    properties                                      |
-		// └----------------------------------------------------┘
+        // ┌----------------------------------------------------┐
+        // │    properties                                      |
+        // └----------------------------------------------------┘
 
-		T length() const
-		{
-			GLA_STATIC_ASSERT(std::is_floating_point<T>::value, "function 'length()' only accepts floating-point value inputs!");
+        T length() const
+        {
+            GLA_STATIC_ASSERT(std::is_floating_point<T>::value, "function 'length()' only accepts floating-point value inputs!");
 
-			return std::sqrt(x * x + y * y);
-		}
+            return std::sqrt(x * x + y * y);
+        }
 
-		T squared_length() const
-		{
-			return x * x + y * y;
-		}
+        T squared_length() const
+        {
+            return x * x + y * y;
+        }
 
-		vec opposite() const
-		{
-			return { -x, -y };
-		}
+        vec opposite() const
+        {
+            return { -x, -y };
+        }
 
-		vec normalized() const
-		{
-			GLA_STATIC_ASSERT(std::is_floating_point<T>::value, "function 'normalized()' only accepts floating-point value inputs!");
+        vec normalized() const
+        {
+            GLA_STATIC_ASSERT(std::is_floating_point<T>::value, "function 'normalized()' only accepts floating-point value inputs!");
 
-			return (*this != zero()) ? (*this / length()) : zero();
-		}
+            return (*this != zero()) ? (*this / length()) : zero();
+        }
 
-		static vec zero()
-		{
-			return { 0, 0 };
-		}
+        static vec zero()
+        {
+            return { 0, 0 };
+        }
 
-		static T dot(const vec &v0, const vec &v1)
-		{
-			return v0.x * v1.x + v0.y * v1.y;
-		}
+        static T dot(const vec &v0, const vec &v1)
+        {
+            return v0.x * v1.x + v0.y * v1.y;
+        }
 
-		static vec reflection(const vec &incident, const vec &normal)
-		{
-			return incident - 2 * dot(normal, incident) * normal;
-		}
+        static vec reflection(const vec &incident, const vec &normal)
+        {
+            return incident - 2 * dot(normal, incident) * normal;
+        }
 
-		static T distance(const vec &v0, const vec &v1)
-		{
-			GLA_STATIC_ASSERT(std::is_floating_point<T>::value, "function 'distance()' only accepts floating-point value inputs!");
+        static T distance(const vec &v0, const vec &v1)
+        {
+            GLA_STATIC_ASSERT(std::is_floating_point<T>::value, "function 'distance()' only accepts floating-point value inputs!");
 
-			return std::sqrt((v1.x - v0.x) * (v1.x - v0.x) + (v1.y - v0.y) * (v1.y - v0.y));
-		}
-	};
+            return std::sqrt((v1.x - v0.x) * (v1.x - v0.x) + (v1.y - v0.y) * (v1.y - v0.y));
+        }
+    };
 }
