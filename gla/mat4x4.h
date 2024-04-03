@@ -293,7 +293,7 @@ namespace gla
                    );
         }
 
-        mat<3, 3, T> submatrix(std::size_t remove_column, std::size_t remove_row)
+        mat<3, 3, T> submatrix(std::size_t remove_column, std::size_t remove_row) const
         {
             GLA_ASSERT(remove_column < columns() && remove_row < rows(), "trying to remove a non-existant mat4x4 index!");
 
