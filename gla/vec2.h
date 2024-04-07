@@ -125,5 +125,15 @@ namespace gla
 
             return std::sqrt((v1.x - v0.x) * (v1.x - v0.x) + (v1.y - v0.y) * (v1.y - v0.y));
         }
+
+        static vec min(const vec &v0, const vec &v1)
+        {
+            return { (v0.x < v1.x) ? v0.x : v1.x, (v0.y < v1.y) ? v0.y : v1.y };
+        }
+
+        static vec max(const vec &v0, const vec &v1)
+        {
+            return { (v0.x > v1.x) ? v0.x : v1.x, (v0.y > v1.y) ? v0.y : v1.y };
+        }
     };
 }

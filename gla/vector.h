@@ -15,6 +15,8 @@
     | [x] cross product                      |
     | [x] reflection                         |
     | [x] distance                           |
+    | [x] min                                |
+    | [x] max                                |
     └----------------------------------------┘
 */
 
