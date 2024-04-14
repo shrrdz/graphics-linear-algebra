@@ -10,6 +10,7 @@
 #include <type_traits>
 
 #include "assert.h"
+#include "config.h"
 #include "common.h"
 #include "forward.h"
 
