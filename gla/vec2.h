@@ -9,52 +9,52 @@ namespace gla
     {
         T x, y;
 
-        vec() : x(0), y(0) { }
+        GLA_CONSTEXPR vec() : x(0), y(0) { }
 
-        vec(T scalar) : x(scalar), y(scalar) { }
+        GLA_CONSTEXPR vec(T scalar) : x(scalar), y(scalar) { }
 
-        vec(T x, T y) : x(x), y(y) { }
+        GLA_CONSTEXPR vec(T x, T y) : x(x), y(y) { }
 
-        static const std::size_t size() { return 2; }
+        static GLA_CONSTEXPR const std::size_t size() { return 2; }
 
         // ┌----------------------------------------------------┐
         // │    binary operators                                |
         // └----------------------------------------------------┘
 
-        vec operator + (const vec &v) const { return { x + v.x, y + v.y }; }
-        vec operator - (const vec &v) const { return { x - v.x, y - v.y }; }
-        vec operator * (const vec &v) const { return { x * v.x, y * v.y }; }
-        vec operator / (const vec &v) const { return { x / v.x, y / v.y }; }
+        GLA_CONSTEXPR vec operator + (const vec &v) const { return { x + v.x, y + v.y }; }
+        GLA_CONSTEXPR vec operator - (const vec &v) const { return { x - v.x, y - v.y }; }
+        GLA_CONSTEXPR vec operator * (const vec &v) const { return { x * v.x, y * v.y }; }
+        GLA_CONSTEXPR vec operator / (const vec &v) const { return { x / v.x, y / v.y }; }
 
-        vec operator * (T scalar) const { return { x * scalar, y * scalar }; }
-        vec operator / (T scalar) const { return { x / scalar, y / scalar }; }
+        GLA_CONSTEXPR vec operator * (T scalar) const { return { x * scalar, y * scalar }; }
+        GLA_CONSTEXPR vec operator / (T scalar) const { return { x / scalar, y / scalar }; }
 
-        friend vec operator * (T scalar, const vec &v) { return { v.x * scalar, v.y * scalar }; }
+        GLA_CONSTEXPR friend vec operator * (T scalar, const vec &v) { return { v.x * scalar, v.y * scalar }; }
 
         // ┌----------------------------------------------------┐
         // │    compound assignment operators                   |
         // └----------------------------------------------------┘
 
-        vec & operator += (const vec &v) { x += v.x; y += v.y; return *this; }
-        vec & operator -= (const vec &v) { x -= v.x; y -= v.y; return *this; }
-        vec & operator *= (const vec &v) { x *= v.x; y *= v.y; return *this; }
-        vec & operator /= (const vec &v) { x /= v.x; y /= v.y; return *this; }
+        GLA_CONSTEXPR vec & operator += (const vec &v) { x += v.x; y += v.y; return *this; }
+        GLA_CONSTEXPR vec & operator -= (const vec &v) { x -= v.x; y -= v.y; return *this; }
+        GLA_CONSTEXPR vec & operator *= (const vec &v) { x *= v.x; y *= v.y; return *this; }
+        GLA_CONSTEXPR vec & operator /= (const vec &v) { x /= v.x; y /= v.y; return *this; }
 
-        vec & operator *= (T scalar) { x *= scalar; y *= scalar; return *this; }
-        vec & operator /= (T scalar) { x /= scalar; y /= scalar; return *this; }
+        GLA_CONSTEXPR vec & operator *= (T scalar) { x *= scalar; y *= scalar; return *this; }
+        GLA_CONSTEXPR vec & operator /= (T scalar) { x /= scalar; y /= scalar; return *this; }
 
         // ┌----------------------------------------------------┐
         // │    comparison operators                            |
         // └----------------------------------------------------┘
 
-        bool operator == (const vec &v) const { return x == v.x && y == v.y; }
-        bool operator != (const vec &v) const { return !(*this == v); }
+        GLA_CONSTEXPR bool operator == (const vec &v) const { return x == v.x && y == v.y; }
+        GLA_CONSTEXPR bool operator != (const vec &v) const { return !(*this == v); }
 
         // ┌----------------------------------------------------┐
         // │    access operators                                |
         // └----------------------------------------------------┘
 
-        T & operator [] (std::size_t index)
+        GLA_CONSTEXPR T & operator [] (std::size_t index)
         {
             switch (index)
             {
@@ -65,7 +65,7 @@ namespace gla
             }
         }
 
-        const T & operator [] (std::size_t index) const
+        GLA_CONSTEXPR const T & operator [] (std::size_t index) const
         {
             switch (index)
             {
@@ -80,58 +80,58 @@ namespace gla
         // │    properties                                      |
         // └----------------------------------------------------┘
 
-        T length() const
+        GLA_CONSTEXPR T length() const
         {
             GLA_STATIC_ASSERT(std::is_floating_point<T>::value, "function 'length()' only accepts floating-point value inputs!");
 
             return std::sqrt(x * x + y * y);
         }
 
-        T squared_length() const
+        GLA_CONSTEXPR T squared_length() const
         {
             return x * x + y * y;
         }
 
-        vec opposite() const
+        GLA_CONSTEXPR vec opposite() const
         {
             return { -x, -y };
         }
 
-        vec normalized() const
+        GLA_CONSTEXPR vec normalized() const
         {
             GLA_STATIC_ASSERT(std::is_floating_point<T>::value, "function 'normalized()' only accepts floating-point value inputs!");
 
             return (*this != zero()) ? (*this / length()) : zero();
         }
 
-        static vec zero()
+        static GLA_CONSTEXPR vec zero()
         {
             return { 0, 0 };
         }
 
-        static T dot(const vec &v0, const vec &v1)
+        static GLA_CONSTEXPR T dot(const vec &v0, const vec &v1)
         {
             return v0.x * v1.x + v0.y * v1.y;
         }
 
-        static vec reflection(const vec &incident, const vec &normal)
+        static GLA_CONSTEXPR vec reflection(const vec &incident, const vec &normal)
         {
             return incident - 2 * dot(normal, incident) * normal;
         }
 
-        static T distance(const vec &v0, const vec &v1)
+        static GLA_CONSTEXPR T distance(const vec &v0, const vec &v1)
         {
             GLA_STATIC_ASSERT(std::is_floating_point<T>::value, "function 'distance()' only accepts floating-point value inputs!");
 
             return std::sqrt((v1.x - v0.x) * (v1.x - v0.x) + (v1.y - v0.y) * (v1.y - v0.y));
         }
 
-        static vec min(const vec &v0, const vec &v1)
+        static GLA_CONSTEXPR vec min(const vec &v0, const vec &v1)
         {
             return { (v0.x < v1.x) ? v0.x : v1.x, (v0.y < v1.y) ? v0.y : v1.y };
         }
 
-        static vec max(const vec &v0, const vec &v1)
+        static GLA_CONSTEXPR vec max(const vec &v0, const vec &v1)
         {
             return { (v0.x > v1.x) ? v0.x : v1.x, (v0.y > v1.y) ? v0.y : v1.y };
         }
