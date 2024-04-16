@@ -18,14 +18,14 @@ namespace gla
 
         GLA_CONSTEXPR mat(const column &c0, const column &c1, const column &c2, const column &c3) : values { c0, c1, c2, c3 } { }
 
-        static GLA_CONSTEXPR const std::size_t columns() { return column::size(); };
-        static GLA_CONSTEXPR const std::size_t rows()    { return row::size(); };
+        GLA_NODISCARD static GLA_CONSTEXPR const std::size_t columns() { return column::size(); };
+        GLA_NODISCARD static GLA_CONSTEXPR const std::size_t rows()    { return row::size(); };
 
         // ┌----------------------------------------------------┐
         // │    binary operators                                |
         // └----------------------------------------------------┘
 
-        GLA_CONSTEXPR mat operator + (const mat &m) const
+        GLA_NODISCARD GLA_CONSTEXPR mat operator + (const mat &m) const
         {
             mat result;
 
@@ -40,7 +40,7 @@ namespace gla
             return result;
         }
 
-        GLA_CONSTEXPR mat operator - (const mat &m) const
+        GLA_NODISCARD GLA_CONSTEXPR mat operator - (const mat &m) const
         {
             mat result;
 
@@ -55,7 +55,7 @@ namespace gla
             return result;
         }
 
-        GLA_CONSTEXPR mat operator * (const mat &m) const
+        GLA_NODISCARD GLA_CONSTEXPR mat operator * (const mat &m) const
         {
             mat result;
 
@@ -75,7 +75,7 @@ namespace gla
             return result;
         }
 
-        GLA_CONSTEXPR mat operator * (T scalar) const
+        GLA_NODISCARD GLA_CONSTEXPR mat operator * (T scalar) const
         {
             for (int c = 0; c < columns(); c++)
             {
@@ -88,7 +88,7 @@ namespace gla
             return *this;
         }
 
-		GLA_CONSTEXPR friend mat operator * (T scalar, const mat &m)
+		GLA_NODISCARD GLA_CONSTEXPR friend mat operator * (T scalar, const mat &m)
         {
             mat result;
 
@@ -159,7 +159,7 @@ namespace gla
         // │    comparison operators                            |
         // └----------------------------------------------------┘
 
-        GLA_CONSTEXPR bool operator == (const mat &m) const
+        GLA_NODISCARD GLA_CONSTEXPR bool operator == (const mat &m) const
         {
             for (int c = 0; c < columns(); c++)
             {
@@ -175,7 +175,7 @@ namespace gla
             return true;
         }
 
-        GLA_CONSTEXPR bool operator != (const mat &m) const
+        GLA_NODISCARD GLA_CONSTEXPR bool operator != (const mat &m) const
         {
             return !(*this == m);
         }
@@ -184,14 +184,14 @@ namespace gla
         // │    access operators                                |
         // └----------------------------------------------------┘
 
-        GLA_CONSTEXPR column & operator [] (std::size_t index)
+        GLA_NODISCARD GLA_CONSTEXPR column & operator [] (std::size_t index)
         {
             GLA_ASSERT(index < 4, "trying to access or write to a non-existant mat4x4 index!")
 
             return values[index];
         }
 
-        GLA_CONSTEXPR const column & operator [] (std::size_t index) const
+        GLA_NODISCARD GLA_CONSTEXPR const column & operator [] (std::size_t index) const
         {
             GLA_ASSERT(index < 4, "trying to access or write to a non-existant mat4x4 index!")
 
@@ -202,7 +202,7 @@ namespace gla
         // │    properties                                      |
         // └----------------------------------------------------┘
 
-        static GLA_CONSTEXPR mat identity()
+        GLA_NODISCARD static GLA_CONSTEXPR mat identity()
         {
             mat identity;
 
@@ -214,7 +214,7 @@ namespace gla
             return identity;
         }
 
-        GLA_CONSTEXPR mat transpose()
+        GLA_NODISCARD GLA_CONSTEXPR mat transpose()
         {
             mat result;
 
@@ -229,7 +229,7 @@ namespace gla
             return result;
         }
 
-        GLA_CONSTEXPR mat cofactor()
+        GLA_NODISCARD GLA_CONSTEXPR mat cofactor()
         {
             mat result;
 
@@ -248,24 +248,24 @@ namespace gla
             return result;
         }
 
-        GLA_CONSTEXPR mat adjugate()
+        GLA_NODISCARD GLA_CONSTEXPR mat adjugate()
         {
             return cofactor().transpose();
         }
 
-        GLA_CONSTEXPR mat inverse()
+        GLA_NODISCARD GLA_CONSTEXPR mat inverse()
         {
             GLA_ASSERT(determinant != 0, "the given mat4x4 is singular, therefore it does not have an inverse!")
 
             return adjugate() * (1 / determinant());
         }
 
-        GLA_CONSTEXPR T trace()
+        GLA_NODISCARD GLA_CONSTEXPR T trace()
         {
             return values[0][0] + values[1][1] + values[2][2] + values[3][3];
         }
 
-        GLA_CONSTEXPR T determinant()
+        GLA_NODISCARD GLA_CONSTEXPR T determinant()
         {
             return values[0][0] *
                    (
@@ -293,7 +293,7 @@ namespace gla
                    );
         }
 
-        GLA_CONSTEXPR mat<3, 3, T> submatrix(std::size_t remove_column, std::size_t remove_row) const
+        GLA_NODISCARD GLA_CONSTEXPR mat<3, 3, T> submatrix(std::size_t remove_column, std::size_t remove_row) const
         {
             GLA_ASSERT(remove_column < columns() && remove_row < rows(), "trying to remove a non-existant mat4x4 index!");
 

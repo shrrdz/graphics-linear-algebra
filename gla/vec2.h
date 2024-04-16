@@ -15,21 +15,21 @@ namespace gla
 
         GLA_CONSTEXPR vec(T x, T y) : x(x), y(y) { }
 
-        static GLA_CONSTEXPR const std::size_t size() { return 2; }
+        GLA_NODISCARD static GLA_CONSTEXPR const std::size_t size() { return 2; }
 
         // ┌----------------------------------------------------┐
         // │    binary operators                                |
         // └----------------------------------------------------┘
 
-        GLA_CONSTEXPR vec operator + (const vec &v) const { return { x + v.x, y + v.y }; }
-        GLA_CONSTEXPR vec operator - (const vec &v) const { return { x - v.x, y - v.y }; }
-        GLA_CONSTEXPR vec operator * (const vec &v) const { return { x * v.x, y * v.y }; }
-        GLA_CONSTEXPR vec operator / (const vec &v) const { return { x / v.x, y / v.y }; }
+        GLA_NODISCARD GLA_CONSTEXPR vec operator + (const vec &v) const { return { x + v.x, y + v.y }; }
+        GLA_NODISCARD GLA_CONSTEXPR vec operator - (const vec &v) const { return { x - v.x, y - v.y }; }
+        GLA_NODISCARD GLA_CONSTEXPR vec operator * (const vec &v) const { return { x * v.x, y * v.y }; }
+        GLA_NODISCARD GLA_CONSTEXPR vec operator / (const vec &v) const { return { x / v.x, y / v.y }; }
 
-        GLA_CONSTEXPR vec operator * (T scalar) const { return { x * scalar, y * scalar }; }
-        GLA_CONSTEXPR vec operator / (T scalar) const { return { x / scalar, y / scalar }; }
+        GLA_NODISCARD GLA_CONSTEXPR vec operator * (T scalar) const { return { x * scalar, y * scalar }; }
+        GLA_NODISCARD GLA_CONSTEXPR vec operator / (T scalar) const { return { x / scalar, y / scalar }; }
 
-        GLA_CONSTEXPR friend vec operator * (T scalar, const vec &v) { return { v.x * scalar, v.y * scalar }; }
+        GLA_NODISCARD GLA_CONSTEXPR friend vec operator * (T scalar, const vec &v) { return { v.x * scalar, v.y * scalar }; }
 
         // ┌----------------------------------------------------┐
         // │    compound assignment operators                   |
@@ -47,14 +47,14 @@ namespace gla
         // │    comparison operators                            |
         // └----------------------------------------------------┘
 
-        GLA_CONSTEXPR bool operator == (const vec &v) const { return x == v.x && y == v.y; }
-        GLA_CONSTEXPR bool operator != (const vec &v) const { return !(*this == v); }
+        GLA_NODISCARD GLA_CONSTEXPR bool operator == (const vec &v) const { return x == v.x && y == v.y; }
+        GLA_NODISCARD GLA_CONSTEXPR bool operator != (const vec &v) const { return !(*this == v); }
 
         // ┌----------------------------------------------------┐
         // │    access operators                                |
         // └----------------------------------------------------┘
 
-        GLA_CONSTEXPR T & operator [] (std::size_t index)
+        GLA_NODISCARD GLA_CONSTEXPR T & operator [] (std::size_t index)
         {
             switch (index)
             {
@@ -65,7 +65,7 @@ namespace gla
             }
         }
 
-        GLA_CONSTEXPR const T & operator [] (std::size_t index) const
+        GLA_NODISCARD GLA_CONSTEXPR const T & operator [] (std::size_t index) const
         {
             switch (index)
             {
@@ -80,58 +80,58 @@ namespace gla
         // │    properties                                      |
         // └----------------------------------------------------┘
 
-        GLA_CONSTEXPR T length() const
+        GLA_NODISCARD GLA_CONSTEXPR T length() const
         {
             GLA_STATIC_ASSERT(std::is_floating_point<T>::value, "function 'length()' only accepts floating-point value inputs!");
 
             return std::sqrt(x * x + y * y);
         }
 
-        GLA_CONSTEXPR T squared_length() const
+        GLA_NODISCARD GLA_CONSTEXPR T squared_length() const
         {
             return x * x + y * y;
         }
 
-        GLA_CONSTEXPR vec opposite() const
+        GLA_NODISCARD GLA_CONSTEXPR vec opposite() const
         {
             return { -x, -y };
         }
 
-        GLA_CONSTEXPR vec normalized() const
+        GLA_NODISCARD GLA_CONSTEXPR vec normalized() const
         {
             GLA_STATIC_ASSERT(std::is_floating_point<T>::value, "function 'normalized()' only accepts floating-point value inputs!");
 
             return (*this != zero()) ? (*this / length()) : zero();
         }
 
-        static GLA_CONSTEXPR vec zero()
+        GLA_NODISCARD static GLA_CONSTEXPR vec zero()
         {
             return { 0, 0 };
         }
 
-        static GLA_CONSTEXPR T dot(const vec &v0, const vec &v1)
+        GLA_NODISCARD static GLA_CONSTEXPR T dot(const vec &v0, const vec &v1)
         {
             return v0.x * v1.x + v0.y * v1.y;
         }
 
-        static GLA_CONSTEXPR vec reflection(const vec &incident, const vec &normal)
+        GLA_NODISCARD static GLA_CONSTEXPR vec reflection(const vec &incident, const vec &normal)
         {
             return incident - 2 * dot(normal, incident) * normal;
         }
 
-        static GLA_CONSTEXPR T distance(const vec &v0, const vec &v1)
+        GLA_NODISCARD static GLA_CONSTEXPR T distance(const vec &v0, const vec &v1)
         {
             GLA_STATIC_ASSERT(std::is_floating_point<T>::value, "function 'distance()' only accepts floating-point value inputs!");
 
             return std::sqrt((v1.x - v0.x) * (v1.x - v0.x) + (v1.y - v0.y) * (v1.y - v0.y));
         }
 
-        static GLA_CONSTEXPR vec min(const vec &v0, const vec &v1)
+        GLA_NODISCARD static GLA_CONSTEXPR vec min(const vec &v0, const vec &v1)
         {
             return { (v0.x < v1.x) ? v0.x : v1.x, (v0.y < v1.y) ? v0.y : v1.y };
         }
 
-        static GLA_CONSTEXPR vec max(const vec &v0, const vec &v1)
+        GLA_NODISCARD static GLA_CONSTEXPR vec max(const vec &v0, const vec &v1)
         {
             return { (v0.x > v1.x) ? v0.x : v1.x, (v0.y > v1.y) ? v0.y : v1.y };
         }
