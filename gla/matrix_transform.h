@@ -25,7 +25,7 @@
 namespace gla
 {
     template<typename T>
-    GLA_CONSTEXPR mat<4, 4, T> translate(const mat<4, 4, T> &input, const vec<3, T> &scalar)
+    GLA_NODISCARD GLA_CONSTEXPR mat<4, 4, T> translate(const mat<4, 4, T> &input, const vec<3, T> &scalar)
     {
         mat<4, 4, T> result = input;
 
@@ -37,7 +37,7 @@ namespace gla
     }
 
     template<typename T>
-    GLA_CONSTEXPR mat<4, 4, T> rotate_x(const mat<4, 4, T> &input, T angle)
+    GLA_NODISCARD GLA_CONSTEXPR mat<4, 4, T> rotate_x(const mat<4, 4, T> &input, T angle)
     {
         mat<4, 4, T> result = mat4x4::identity();
 
@@ -50,7 +50,7 @@ namespace gla
     }
 
     template<typename T>
-    GLA_CONSTEXPR mat<4, 4, T> rotate_y(const mat<4, 4, T> &input, T angle)
+    GLA_NODISCARD GLA_CONSTEXPR mat<4, 4, T> rotate_y(const mat<4, 4, T> &input, T angle)
     {
         mat<4, 4, T> result = mat4x4::identity();
 
@@ -63,7 +63,7 @@ namespace gla
     }
 
     template<typename T>
-    GLA_CONSTEXPR mat<4, 4, T> rotate_z(const mat<4, 4, T> &input, T angle)
+    GLA_NODISCARD GLA_CONSTEXPR mat<4, 4, T> rotate_z(const mat<4, 4, T> &input, T angle)
     {
         mat<4, 4, T> result = mat4x4::identity();
 
@@ -76,7 +76,7 @@ namespace gla
     }
 
     template<typename T>
-    GLA_CONSTEXPR mat<4, 4, T> scale(const mat<4, 4, T> &input, const vec<3, T> &scalar)
+    GLA_NODISCARD GLA_CONSTEXPR mat<4, 4, T> scale(const mat<4, 4, T> &input, const vec<3, T> &scalar)
     {
         mat<4, 4, T> result = input;
 
@@ -89,7 +89,7 @@ namespace gla
 
     // view matrix
     template<typename T>
-    static GLA_CONSTEXPR mat<4, 4, T> view(const vec<3, T> &eye, const vec<3, T> &at, const vec<3, T> &up)
+    GLA_NODISCARD static GLA_CONSTEXPR mat<4, 4, T> view(const vec<3, T> &eye, const vec<3, T> &at, const vec<3, T> &up)
     {
         mat<4, 4, T> view = gla::mat4x4::identity();
 
@@ -118,7 +118,7 @@ namespace gla
 
     // projection matrix - perspective
     template<typename T>
-    static GLA_CONSTEXPR mat<4, 4, T> perspective(T fov_degrees, T aspect_ratio, T near, T far)
+    GLA_NODISCARD static GLA_CONSTEXPR mat<4, 4, T> perspective(T fov_degrees, T aspect_ratio, T near, T far)
     {
         mat<4, 4, T> projection;
 
@@ -135,7 +135,7 @@ namespace gla
 
     // projection matrix - orthographic
     template<typename T>
-    static GLA_CONSTEXPR mat<4, 4, T> orthographic(T left, T right, T bottom, T top, T near, T far)
+    GLA_NODISCARD static GLA_CONSTEXPR mat<4, 4, T> orthographic(T left, T right, T bottom, T top, T near, T far)
     {
         mat<4, 4, T> projection = gla::mat4x4::identity();
 
