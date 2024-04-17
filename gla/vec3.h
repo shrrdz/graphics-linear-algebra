@@ -9,13 +9,15 @@ namespace gla
     {
         T x, y, z;
 
-        GLA_CONSTEXPR vec() : x(0), y(0), z(0) { }
+        // ┌----------------------------------------------------┐
+        // │    constructors                                    |
+        // └----------------------------------------------------┘
 
-        GLA_CONSTEXPR vec(T scalar) : x(scalar), y(scalar), z(scalar) { }
+        GLA_CONSTEXPR vec() : x(0), y(0), z(0) { }
 
         GLA_CONSTEXPR vec(T x, T y, T z) : x(x), y(y), z(z) { }
 
-        GLA_NODISCARD static GLA_CONSTEXPR const std::size_t size() { return 3; }
+        GLA_CONSTEXPR explicit vec(T scalar) : x(scalar), y(scalar), z(scalar) { }
 
         // ┌----------------------------------------------------┐
         // │    binary operators                                |
@@ -81,6 +83,11 @@ namespace gla
         // ┌----------------------------------------------------┐
         // │    properties                                      |
         // └----------------------------------------------------┘
+
+        GLA_NODISCARD static GLA_CONSTEXPR const std::size_t size()
+        {
+            return 3;
+        }
 
         GLA_NODISCARD GLA_CONSTEXPR T length() const
         {

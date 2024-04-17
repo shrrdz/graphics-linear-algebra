@@ -10,16 +10,22 @@ namespace gla
         typedef vec<4, T> column;
         typedef vec<4, T> row;
 
+        GLA_NODISCARD static GLA_CONSTEXPR const std::size_t columns() { return column::size(); };
+        GLA_NODISCARD static GLA_CONSTEXPR const std::size_t rows() { return row::size(); };
+
     private:
         column values[4];
 
     public:
+        // ┌----------------------------------------------------┐
+        // │    constructors                                    |
+        // └----------------------------------------------------┘
+
         GLA_CONSTEXPR mat() : values { vec<4, T>(0), vec<4, T>(0), vec<4, T>(0), vec<4, T>(0) } { }
 
         GLA_CONSTEXPR mat(const column &c0, const column &c1, const column &c2, const column &c3) : values { c0, c1, c2, c3 } { }
 
-        GLA_NODISCARD static GLA_CONSTEXPR const std::size_t columns() { return column::size(); };
-        GLA_NODISCARD static GLA_CONSTEXPR const std::size_t rows()    { return row::size(); };
+        GLA_CONSTEXPR explicit mat(T scalar) : values { vec<4, T>(scalar), vec<4, T>(scalar), vec<4, T>(scalar), vec<4, T>(scalar) } { }
 
         // ┌----------------------------------------------------┐
         // │    binary operators                                |
