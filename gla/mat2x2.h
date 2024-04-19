@@ -27,6 +27,8 @@ namespace gla
 
         GLA_CONSTEXPR explicit mat(T scalar) : values { vec<2, T>(scalar), vec<2, T>(scalar) } { }
 
+        GLA_CONSTEXPR mat(T x0, T x1, T y0, T y1) : values { vec<2, T>(x0, x1), vec<2, T>(y0, y1) } { }
+
         // ┌----------------------------------------------------┐
         // │    binary operators                                |
         // └----------------------------------------------------┘
