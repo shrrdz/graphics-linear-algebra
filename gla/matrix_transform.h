@@ -4,22 +4,22 @@
 #include "mat4x4.h"
 
 /*
-   ┌--------------------------------------------------------------------------┐
-   |                                                                          |
-   | all matrices are in right-handed coordinate system by default:           |
-   |                                                                          |
-   |                 +y                                                       |
-   |                   |                                                      |
-   |                   |                                                      |
-   |                   |________                                              |
-   |                  /        +x                                             |
-   |              +z /                                                        |
-   |                                                                          |
-   | order of application:                                                    |
-   |                                                                          |
-   |        scale * z-rotation * y-rotation * x-rotation * translation        |
-   |                                                                          |
-   └--------------------------------------------------------------------------┘
+    ┌--------------------------------------------------------------------------┐
+    |                                                                          |
+    | all matrices are in right-handed coordinate system by default:           |
+    |                                                                          |
+    |                 +y                                                       |
+    |                   |                                                      |
+    |                   |                                                      |
+    |                   |________                                              |
+    |                  /        +x                                             |
+    |              +z /                                                        |
+    |                                                                          |
+    | order of application:                                                    |
+    |                                                                          |
+    |        scale * z-rotation * y-rotation * x-rotation * translation        |
+    |                                                                          |
+    └--------------------------------------------------------------------------┘
 */
 
 namespace gla
